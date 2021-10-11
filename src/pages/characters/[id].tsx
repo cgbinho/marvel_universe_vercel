@@ -1,11 +1,14 @@
 import * as React from 'react';
-import Image from 'next/image';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { Button, CardMedia, Container, Grid } from '@mui/material';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { CharacterLastSeen } from '../../components/Character/LastSeen';
+import { CharacterName } from '../../components/Character/Name';
 import { Footer } from '../../components/Footer';
-import { CharactersIcon } from '../../components/Icons/Characters';
+import { Navbar } from '../../components/Navbar';
+
 
 interface CharacterData {
   id: string;
@@ -19,116 +22,40 @@ export default function Characters({ id }: CharacterData) {
       gridTemplateRows: 'auto 1fr auto',
       minHeight: '100vh',
     }}>
-      <Box sx={{ my: 6, textAlign: 'center' }}>
-        <Box sx={{ maxWidth: '200px', margin: '0 auto', marginBottom: '1rem' }}>
-          <Image
-            alt="Marvel Logo"
-            src={`/images/marvel_logo.svg`}
-            layout="fixed"
-            width={"200px"}
-            height={"80px"}
-          />
-        </Box>
-      </Box>
-      <Box sx={{ overflow: 'auto' }}>
-        {/* Characters */}
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            <CharactersIcon />
-            <Typography
-              variant="h6"
-              fontWeight="700"
-              component="h4"
-              color="text.primary"
-            >
-              Characters
-            </Typography>
-            {' '} / {' '}
-            <Typography
-              variant="h6"
-              fontWeight="700"
-              component="h4"
-              color="text.primary"
-            >
-              {id}
-            </Typography>
+      <Navbar />
 
-          </Box>
-        </Box>
-        {/* Character Card */}
-        <Box
-          sx={{
-            backgroundColor: 'grey.900',
-            padding: '1rem',
-            // textAlign: 'center'
-          }}>
-          <Typography
-            variant="subtitle1"
-            fontWeight="700"
-            color="grey.600"
-          >
-            Name
-          </Typography>
-          <Typography
-            variant="h4"
-            fontWeight="700"
-            component="h4"
-            color="grey.200"
-            gutterBottom
-          >
-            {id}
-          </Typography>
+      <Grid sx={{ overflow: 'auto' }}>
+        <Breadcrumbs {...{ name: 'Wolverine' }} />
+        {/* Character */}
+        <Grid container spacing={4} p={4} sx={{ backgroundColor: 'grey.900' }}>
 
-          <Typography
-            variant="body1"
-            fontWeight="400"
-            color="grey.200"
-            gutterBottom
-          >
-            Description text
-          </Typography>
-
-          <Typography
-            variant="h6"
-            fontWeight="700"
-            color="grey.600"
-          >
-            Last seen on
-          </Typography>
-
-          {/* Comics */}
-          <Typography
-            variant="subtitle1"
-            fontWeight="700"
-            color="grey.200"
-          >
-            Comics
-          </Typography>
-          <ul>
-            <li>
-              <Typography
-                variant="body2"
-                fontWeight="400"
-                color="grey.200"
-              >
-                Comic book name - 2021
-              </Typography>
-            </li>
-          </ul>
-          {/* Stories */}
-          {/* Events */}
-          {/* Series */}
-          {/* Navigation */}
-          <Grid container gap="1rem">
-            <Button variant="contained" startIcon={<NavigateBeforeIcon />} >
-              Previous
-            </Button>
-            <Button variant="contained" endIcon={<NavigateNextIcon />} >
-              Next
-            </Button>
+          {/* Character Image */}
+          <Grid item xs={12} md={6}>
+            <CardMedia
+              component="img"
+              src={`/images/marvel_logo.svg`}
+              loading="lazy"
+            />
           </Grid>
-        </Box>
-      </Box >
+
+          {/* Character Info */}
+          <Grid item xs={12} md={6}>
+            <CharacterName {...{ name: 'Wolverine', description: 'Wolverine description text.' }} />
+            <CharacterLastSeen {...{ comics: [], stories: [], series: [] }} />
+
+            {/* Navigation */}
+            <Grid container gap="1rem">
+              <Button variant="contained" startIcon={<NavigateBeforeIcon />} >
+                Previous
+              </Button>
+              <Button variant="contained" endIcon={<NavigateNextIcon />} >
+                Next
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+
+      </Grid >
       <Footer />
     </Container >
   );

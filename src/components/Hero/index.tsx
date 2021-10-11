@@ -1,22 +1,12 @@
 import * as React from 'react';
-import Image from 'next/image'
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { Grid } from '@mui/material';
 import { Divider } from '@mui/material';
+import { MarvelLogo } from '../MarvelLogo';
 
 export function Hero() {
   return (
-    <Box sx={{ my: 6, textAlign: 'center' }}>
-      <Box sx={{ maxWidth: '200px', margin: '0 auto', marginBottom: '1rem' }}>
-        <Image
-          alt="Marvel Logo"
-          src={`/images/marvel_logo.svg`}
-          layout="fixed"
-          width={"200px"}
-          height={"80px"}
-        />
-      </Box>
-
+    <Grid mb={8} sx={{ textAlign: 'center' }}>
       <Typography
         variant="h4"
         component="h1"
@@ -34,6 +24,6 @@ export function Hero() {
       >
         Here you can find everything about your favorite heroes and their journeys.
       </Typography>
-    </Box>
+    </Grid>
   )
 }

@@ -2,24 +2,12 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import MuiLink from '@mui/material/Link';
 import { Container, Box } from '@mui/material';
+import { Contact } from '../Contact';
 
 export function Footer() {
   return (
-    <Container disableGutters maxWidth={false} >
-      <Typography
-        variant="h6"
-        fontWeight="700"
-        align="center"
-      >
-        CONTACT ME @
-      </Typography>
-      <Typography
-        variant="body1"
-        fontWeight="400"
-        align="center"
-        gutterBottom>
-        cgbordin@gmail.com
-      </Typography>
+    <Container disableGutters >
+      <Contact />
       <Box
         sx={{
           backgroundColor: 'grey.900',
