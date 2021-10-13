@@ -1,5 +1,6 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { useRouter } from 'next/router';
 
 type CharacterThumbnailData = {
   path: string;
@@ -39,31 +40,39 @@ interface CharacterProps {
 }
 
 export function CardComponent({ character }: CharacterProps) {
-  // console.log(JSON.stringify(character, null, 2));
-  console.log(character);
+
+  const router = useRouter();
+
+
 
   return (
-    <Card sx={{
+    <Grid item xs={6} sm={4} md={3} sx={{
       width: 220,
-      height: 340,
-      display: 'inline-block',
-      margin: 1,
-      whiteSpace: 'pre-wrap',
-
+      color: 'grey.800',
     }}>
-      <CardActionArea onClick={() => console.log('clicked!')}>
+      <CardActionArea
+        sx={{
+          backgroundColor: 'grey.100',
+          borderRadius: '1rem 0 1rem 0'
+        }}
+        onClick={() => {
+          console.log('clicked!')
+          router.push(`characters/${character.id}`)
+        }}>
         <CardMedia
+          sx={{ borderRadius: '1rem 0 0 0' }}
           component="img"
+          height="320"
           src={`${character.thumbnail.path}/portrait_xlarge.${character.thumbnail.extension}`}
           loading="lazy"
         />
-        <CardContent>
-          <Typography gutterBottom variant="body2" component="p">
+        <CardContent >
+          <Typography variant="caption" component="p">
             {character.name}
           </Typography>
         </CardContent>
       </CardActionArea>
-    </Card>
+    </Grid>
   )
 }
 
