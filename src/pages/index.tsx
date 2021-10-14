@@ -29,10 +29,14 @@ export default function Index() {
     isLoading,
     isFetching
   } = useInfiniteQuery([offset, nameStartsWith, orderBy], fetchCharacters, {
-    getNextPageParam: (lastPage, pages) => lastPage.nextOffset
+    getNextPageParam: (lastPage, pages) => {
+      if (lastPage.lastPage) {
+        return undefined;
+      }
+      return lastPage.nextOffset;
+    }
   });
 
-  // const router = useRouter();
   const backToRef = useRef(null);
 
   return (
