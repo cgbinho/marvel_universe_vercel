@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
 import { CharactersIcon } from '../Icons/Characters';
 
 interface BreadcrumbsData {
@@ -10,31 +10,39 @@ interface BreadcrumbsData {
 
 export function Breadcrumbs({ categoryName, itemName, color }: BreadcrumbsData) {
   return (
-    <Box mb={2} ml={4} sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }
-    }>
-      <CharactersIcon />
-      <Typography
-        variant="h6"
-        fontWeight="700"
-        component="h4"
-        color={color}
+    <>
+      <Grid container
+        mb={2}
+        sx={{ display: 'flex', alignItems: 'flex-start' }}
+        xs={12}
+        px={2}
       >
-        {categoryName}
-      </Typography>
-      {itemName &&
-        <>
-          {' '} / {' '}
-          < Typography
-            variant="h6"
-            fontWeight="700"
-            component="h4"
-            color={color}
-          >
-            {itemName}
-          </Typography >
-        </>
-      }
-    </Box >
+        <CharactersIcon />
+        <Typography
+          variant="h6"
+          fontWeight="700"
+          component="h4"
+          color={color}
+          ml={1}
+        >
+          {categoryName}
+        </Typography>
+        <Grid item xs={12}>
+          {
+            itemName &&
+            < Typography
+              variant="h6"
+              fontWeight="700"
+              component="h4"
+              color={color}
+              ml={1}
+            >
+              {' '} / {itemName}
+            </Typography >
+          }
+        </Grid>
+      </Grid >
+    </>
   )
 }
 

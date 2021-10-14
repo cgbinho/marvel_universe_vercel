@@ -17,7 +17,7 @@ export function FilterByOrder({ setOrderBy }: FilterbyNameOrder) {
           fontWeight="400"
           color="grey.600"
         >
-          Filter by order
+          Filter by Order
         </Typography>
       </Grid>
       <Grid

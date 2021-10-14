@@ -18,7 +18,7 @@ export function FilterByNameStartsWith({ setNameStartsWith, setOffset }: Filterb
           fontWeight="400"
           color="grey.600"
         >
-          Filter by name
+          Filter by Name
         </Typography>
       </Grid>
       <Grid
