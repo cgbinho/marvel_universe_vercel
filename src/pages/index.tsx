@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import Head from 'next/head';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Button, ButtonGroup, Grid } from '@mui/material';
-import { useRouter } from 'next/router';
+import Head from 'next/head';
+import React, { useRef, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useInfiniteQuery } from 'react-query';
+import { CharacterItemData } from '../@types';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { CardComponent } from '../components/Card';
+import { ErrorComponent } from '../components/ErrorComponent';
 import { FilterByNameStartsWith } from '../components/FilterByNameStartsWith';
 import { FilterByOrder } from '../components/FilterByOrder';
 import { Hero } from '../components/Hero';
 import { Layout } from '../components/Layout';
-import { CircularIndeterminate } from '../components/Loading';
+import { LoadingComponent } from '../components/LoadingComponent';
 import { fetchCharacters } from '../queries/characters';
 
 export default function Index() {
@@ -31,16 +32,18 @@ export default function Index() {
     getNextPageParam: (lastPage, pages) => lastPage.nextOffset
   });
 
-  const router = useRouter();
+  // const router = useRouter();
+  const backToRef = useRef(null);
 
   return (
     <Layout>
       <Head>
         <title>Marvel Universe - by cgbordin@gmail.com</title>
       </Head>
+
       <Hero />
-      {/* {data && <pre>{JSON.stringify(data, null, 2)}</pre>} */}
-      <Grid container spacing={4} p={4} sx={{
+
+      <Grid ref={backToRef} container spacing={4} p={4} sx={{
         display: 'flex',
         flexDirection: 'column',
         alignContent: "center",
@@ -55,14 +58,14 @@ export default function Index() {
         <FilterByOrder {...{ setOrderBy }} />
 
         {error && <p>Error loading results</p>}
-        {isLoading && <CircularIndeterminate />}
-        {/* {data && <pre>{JSON.stringify(data, null, 2)}</pre>} */}
+        {isLoading && <LoadingComponent />}
+        {data?.pages?.[0]?.count === 0 && <ErrorComponent {...{ message: 'No results found.' }} />}
         {data &&
           <>
             <InfiniteScroll
               dataLength={data.pages.length} //This is important field to render the next data
               next={() => fetchNextPage()}
-              loader={isFetching && <CircularIndeterminate />}
+              loader={isFetching && <LoadingComponent />}
               hasMore={hasNextPage ? true : false}
               style={{
                 overflow: 'initial',
@@ -80,7 +83,7 @@ export default function Index() {
                 columnSpacing={{ xs: 3 }}
                 maxWidth={1200}
               >
-                {data.pages.map(page => page.results.map(character => <CardComponent key={character.id} {...{ character }} />))}
+                {data.pages.map(page => page.results.map((character: CharacterItemData) => <CardComponent key={character.id} {...{ character }} />))}
               </Grid>
             </InfiniteScroll>
             <ButtonGroup
@@ -91,7 +94,7 @@ export default function Index() {
               <Button
                 variant="contained"
                 startIcon={<KeyboardArrowUpIcon />}
-                onClick={() => router.push('/#home')}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
                 Return to top
               </Button>

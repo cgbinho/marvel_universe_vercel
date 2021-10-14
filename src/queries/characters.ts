@@ -21,6 +21,7 @@ export const fetchCharacters = async (
   );
 
   const { data } = await api.get(`/characters`, { params });
+
   /* 
   offset (int, optional): The requested offset (number of skipped results) of the call.,
   limit (int, optional): The requested result limit.,
@@ -29,6 +30,7 @@ export const fetchCharacters = async (
   results (Array[Character], optional): The list of characters returned by the call.
   */
   const { total, count, results, limit, offset: dataOffset } = data.data;
+  console.log(count);
 
   const parcial: number = count + dataOffset * limit;
   const nextOffset: number = dataOffset + limit;

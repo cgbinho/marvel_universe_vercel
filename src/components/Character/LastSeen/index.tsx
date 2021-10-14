@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
+import { LastSeenCategory } from '../../LastSeenCategory';
 
 interface CharacterLastSeenData {
   comics: any;
@@ -8,6 +9,7 @@ interface CharacterLastSeenData {
 }
 
 export function CharacterLastSeen({ comics, series, stories }: CharacterLastSeenData) {
+
   return (
     <>
       <Typography
@@ -18,25 +20,9 @@ export function CharacterLastSeen({ comics, series, stories }: CharacterLastSeen
         Last seen on
       </Typography>
 
-      {/* Comics */}
-      <Typography
-        variant="subtitle1"
-        fontWeight="700"
-        color="grey.200"
-      >
-        Comics
-      </Typography>
-      <ul>
-        <li>
-          <Typography
-            variant="body2"
-            fontWeight="400"
-            color="grey.200"
-          >
-            Comic book name - 2021
-          </Typography>
-        </li>
-      </ul>
+      <LastSeenCategory {...{ categoryName: "Comics", data: comics }} />
+      <LastSeenCategory {...{ categoryName: "Series", data: series }} />
+      <LastSeenCategory {...{ categoryName: "Stories", data: stories }} />
     </>
   )
 }

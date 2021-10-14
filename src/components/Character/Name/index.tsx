@@ -26,15 +26,17 @@ export function CharacterName({ name, description }: CharacterNameData) {
         {name}
       </Typography>
 
-      <Typography
-        variant="body1"
-        fontWeight="400"
-        color="grey.200"
-        gutterBottom
-        marginBottom="2rem"
-      >
-        {description}
-      </Typography>
+      {description !== '' &&
+        <Typography
+          variant="body1"
+          fontWeight="400"
+          color="grey.200"
+          gutterBottom
+          marginBottom="2rem"
+        >
+          {description}
+        </Typography>
+      }
     </>
   )
 }

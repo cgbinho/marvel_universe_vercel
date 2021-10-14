@@ -1,97 +1,127 @@
-import * as React from 'react';
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Button, CardMedia, Container, Grid } from '@mui/material';
+import { CardMedia, Grid } from '@mui/material';
+import CryptoJS from 'crypto-js';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import * as React from 'react';
+import { CharacterItemData } from '../../@types';
+import { api } from '../../api';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { CharacterLastSeen } from '../../components/Character/LastSeen';
 import { CharacterName } from '../../components/Character/Name';
-import { Footer } from '../../components/Footer';
-import { Navbar } from '../../components/Navbar';
-import Head from 'next/head';
+import { GoBack } from '../../components/GoBack';
+import { Layout } from '../../components/Layout';
 
 
-interface CharacterData {
-  id: string;
+interface CharacterProps {
+  characterData: {
+    count: number;
+    limit: number;
+    offset: number;
+    results: CharacterItemData[];
+    total: number;
+  }
 }
 
-export default function Characters({ id }: CharacterData) {
+export default function Characters({ characterData }: CharacterProps) {
+
+  const { isFallback } = useRouter();
+
+  if (isFallback) {
+    return <p>Loading</p>
+
+  }
+
+  const { id, name, description, series, stories, comics, thumbnail } = characterData?.results?.[0];
+
+
   return (
-    <>
+    <Layout>
       <Head>
         <title>Marvel Universe - by cgbordin@gmail.com</title>
       </Head>
-      <Container disableGutters maxWidth={false} sx={{
-        display: 'grid',
-        gridTemplateColumns: '1fr',
-        gridTemplateRows: 'auto 1fr auto',
-        minHeight: '100vh',
-      }}>
-        <Navbar />
 
-        <Grid sx={{ overflow: 'auto' }}>
-          <Breadcrumbs {...{ name: 'Wolverine' }} />
+      <Grid container sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: "center",
+        justifyContent: "center",
+        backgroundColor: 'grey.900'
+      }}
+      >
+
+        <Grid maxWidth={1200} my={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+          <Breadcrumbs {...{ categoryName: "Characters", itemName: name, color: "white" }} />
+
           {/* Character */}
-          <Grid container spacing={4} p={4} sx={{ backgroundColor: 'grey.900' }}>
+          <Grid container sx={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}>
 
             {/* Character Image */}
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6} p={2}>
               <CardMedia
                 component="img"
-                src={`/images/marvel_logo.svg`}
+                src={`${thumbnail.path}/portrait_xlarge.${thumbnail.extension}`}
                 loading="lazy"
               />
             </Grid>
-
             {/* Character Info */}
-            <Grid item xs={12} md={6}>
-              <CharacterName {...{ name: 'Wolverine', description: 'Wolverine description text.' }} />
-              <CharacterLastSeen {...{ comics: [], stories: [], series: [] }} />
+            <Grid item xs={12} sm={6} p={2}>
+              <CharacterName {...{ name, description }} />
 
-              {/* Navigation */}
-              <Grid container gap="1rem">
-                <Button variant="contained" startIcon={<NavigateBeforeIcon />} >
-                  Previous
-                </Button>
-                <Button variant="contained" endIcon={<NavigateNextIcon />} >
-                  Next
-                </Button>
-              </Grid>
+              <CharacterLastSeen {...{ comics, stories, series }} />
+
+              <GoBack />
+
             </Grid>
+
           </Grid>
 
         </Grid >
-        <Footer />
-      </Container >
-    </>
+
+      </Grid >
+
+    </Layout >
   );
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 
-  const id = params?.id;
-  // load character data
+  const { id } = params;
 
-  return {
-    props: {
-      id
-    },
-  };
+  // load character data
+  try {
+    // inject params
+    api.interceptors.request.use(config => {
+      const ts = new Date().getTime();
+      const apikey = process.env.NEXT_PUBLIC_MARVEL_KEY;
+      const hash = CryptoJS.MD5(`${ts}${process.env.MARVEL_PRIVATE_KEY}${apikey}`).toString();
+
+      config.params = {
+        ts,
+        apikey,
+        hash,
+        ...config.params,
+      };
+      return config;
+    });
+
+    const response = await api.get(`/characters/${id}`);
+    const characterData = response.data.data;
+
+    return {
+      props: {
+        characterData
+      }
+    }
+
+  } catch (err) {
+    console.log(err);
+    return { notFound: true }
+  }
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-
-  // const res = await fetch('https://.../posts')
-  // const posts = await res.json()
-
-  const characters = [{ id: 'wolverine' }];
-
-  // Get the paths we want to pre-render based on posts
-  const paths = characters.map((character) => ({
-    params: { id: character.id },
-  }))
-
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: false }
+// Paths are generated as character requests are made. This way we avoid having to generate all pages at build time.
+export const getStaticPaths: GetStaticPaths = () => {
+  return { paths: [], fallback: true };
 }
