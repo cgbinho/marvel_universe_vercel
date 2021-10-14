@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import MuiLink from '@mui/material/Link';
-import { Container, Box } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import { Contact } from '../Contact';
 
 export function Footer() {
   return (
-    <Container disableGutters >
+    <>
       <Contact />
       <Box
         sx={{
@@ -24,13 +24,15 @@ export function Footer() {
           </MuiLink> - {' '}
           {new Date().getFullYear()}.
         </Typography>
-        <Typography
-          variant="caption"
-          color="grey.400"
-        >
-          Disclaimer: data provided by Marvel - © {new Date().getFullYear()} Marvel.
-        </Typography>
+        <a href={'https://www.marvel.com'}>
+          <Typography
+            variant="caption"
+            color="grey.400"
+          >
+            Disclaimer: data provided by Marvel - © {new Date().getFullYear()} Marvel.
+          </Typography>
+        </a>
       </Box>
-    </ Container >
+    </>
   );
 }

@@ -19,7 +19,7 @@ export function Layout({ children }: LayoutData) {
         {children}
       </Grid>
       <Footer />
-    </Container>
+    </Container >
   )
 }
 
