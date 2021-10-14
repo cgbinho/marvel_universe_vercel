@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
           <link href="https://fonts.googleapis.com/css2?family=Farro:wght@300;700&display=swap" rel="stylesheet" />
         </Head>
-        <body>
+        <body id="home">
           <Main />
           <NextScript />
         </body>

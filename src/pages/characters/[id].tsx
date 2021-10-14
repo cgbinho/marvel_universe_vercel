@@ -8,6 +8,7 @@ import { CharacterLastSeen } from '../../components/Character/LastSeen';
 import { CharacterName } from '../../components/Character/Name';
 import { Footer } from '../../components/Footer';
 import { Navbar } from '../../components/Navbar';
+import Head from 'next/head';
 
 
 interface CharacterData {
@@ -16,48 +17,53 @@ interface CharacterData {
 
 export default function Characters({ id }: CharacterData) {
   return (
-    <Container disableGutters maxWidth={false} sx={{
-      display: 'grid',
-      gridTemplateColumns: '1fr',
-      gridTemplateRows: 'auto 1fr auto',
-      minHeight: '100vh',
-    }}>
-      <Navbar />
+    <>
+      <Head>
+        <title>Marvel Universe - by cgbordin@gmail.com</title>
+      </Head>
+      <Container disableGutters maxWidth={false} sx={{
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        gridTemplateRows: 'auto 1fr auto',
+        minHeight: '100vh',
+      }}>
+        <Navbar />
 
-      <Grid sx={{ overflow: 'auto' }}>
-        <Breadcrumbs {...{ name: 'Wolverine' }} />
-        {/* Character */}
-        <Grid container spacing={4} p={4} sx={{ backgroundColor: 'grey.900' }}>
+        <Grid sx={{ overflow: 'auto' }}>
+          <Breadcrumbs {...{ name: 'Wolverine' }} />
+          {/* Character */}
+          <Grid container spacing={4} p={4} sx={{ backgroundColor: 'grey.900' }}>
 
-          {/* Character Image */}
-          <Grid item xs={12} md={6}>
-            <CardMedia
-              component="img"
-              src={`/images/marvel_logo.svg`}
-              loading="lazy"
-            />
-          </Grid>
+            {/* Character Image */}
+            <Grid item xs={12} md={6}>
+              <CardMedia
+                component="img"
+                src={`/images/marvel_logo.svg`}
+                loading="lazy"
+              />
+            </Grid>
 
-          {/* Character Info */}
-          <Grid item xs={12} md={6}>
-            <CharacterName {...{ name: 'Wolverine', description: 'Wolverine description text.' }} />
-            <CharacterLastSeen {...{ comics: [], stories: [], series: [] }} />
+            {/* Character Info */}
+            <Grid item xs={12} md={6}>
+              <CharacterName {...{ name: 'Wolverine', description: 'Wolverine description text.' }} />
+              <CharacterLastSeen {...{ comics: [], stories: [], series: [] }} />
 
-            {/* Navigation */}
-            <Grid container gap="1rem">
-              <Button variant="contained" startIcon={<NavigateBeforeIcon />} >
-                Previous
-              </Button>
-              <Button variant="contained" endIcon={<NavigateNextIcon />} >
-                Next
-              </Button>
+              {/* Navigation */}
+              <Grid container gap="1rem">
+                <Button variant="contained" startIcon={<NavigateBeforeIcon />} >
+                  Previous
+                </Button>
+                <Button variant="contained" endIcon={<NavigateNextIcon />} >
+                  Next
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
 
-      </Grid >
-      <Footer />
-    </Container >
+        </Grid >
+        <Footer />
+      </Container >
+    </>
   );
 }
 
