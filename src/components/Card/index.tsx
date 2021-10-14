@@ -46,12 +46,14 @@ export function CardComponent({ character }: CharacterProps) {
 
 
   return (
-    <Grid item xs={6} sm={4} md={3} sx={{
+    <Grid item xs={6} sm={4} md={4} lg={2} sx={{
+      display: 'flex',
       width: 220,
       color: 'grey.800',
     }}>
       <CardActionArea
         sx={{
+          display: 'flex', justifyContent: 'space-between', flexDirection: 'column',
           backgroundColor: 'grey.100',
           borderRadius: '1rem 0 1rem 0'
         }}
@@ -62,11 +64,11 @@ export function CardComponent({ character }: CharacterProps) {
         <CardMedia
           sx={{ borderRadius: '1rem 0 0 0' }}
           component="img"
-          height="320"
+          // height="320"
           src={`${character.thumbnail.path}/portrait_xlarge.${character.thumbnail.extension}`}
           loading="lazy"
         />
-        <CardContent >
+        <CardContent sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column' }} >
           <Typography variant="caption" component="p">
             {character.name}
           </Typography>

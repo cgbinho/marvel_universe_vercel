@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { Divider } from '@mui/material';
 import { MarvelLogo } from '../MarvelLogo';
 
@@ -11,11 +11,20 @@ export function Hero() {
         variant="h4"
         component="h1"
         fontWeight="700"
-        gutterBottom>
+        gutterBottom
+      >
         WELCOME TO THE MARVEL UNIVERSE!
       </Typography>
 
-      <Divider variant="fullWidth" />
+      <Box component='hr' maxWidth={1200} sx={{
+        border: "none",
+        height: "5px",
+        backgroundColor: "red",
+        borderRadius: '50%'
+      }}>
+
+      </Box>
+      {/* <Divider variant="fullWidth" sx={{}} /> */}
 
       <Typography
         variant="subtitle1"
@@ -24,6 +33,6 @@ export function Hero() {
       >
         Here you can find everything about your favorite heroes and their journeys.
       </Typography>
-    </Grid>
+    </Grid >
   )
 }
