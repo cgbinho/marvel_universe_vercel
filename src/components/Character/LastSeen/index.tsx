@@ -10,6 +10,7 @@ interface CharacterLastSeenData {
 
 export function CharacterLastSeen({ comics, series, stories }: CharacterLastSeenData) {
 
+
   return (
     <>
       <Typography

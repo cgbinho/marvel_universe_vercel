@@ -28,9 +28,8 @@ export const LastSeenCategory = ({ categoryName, data }: LastSeenCategoryData) =
       <ul>
         {data.items.slice(0, 3).map((item: LastSeenItemData) => {
           return (
-            <li key={item.name}>
+            <li key={item.resourceURI}>
               <Typography
-                key={item.name}
                 variant="body2"
                 fontWeight="400"
                 color="grey.200"

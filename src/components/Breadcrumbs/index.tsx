@@ -11,7 +11,7 @@ interface BreadcrumbsData {
 export function Breadcrumbs({ categoryName, itemName, color }: BreadcrumbsData) {
   return (
     <>
-      <Grid container
+      <Grid item
         mb={2}
         sx={{ display: 'flex', alignItems: 'flex-start' }}
         xs={12}

@@ -50,15 +50,14 @@ export default function Characters({ characterData }: CharacterProps) {
       }}
       >
 
-        <Grid maxWidth={1200} my={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Grid container maxWidth={1200} my={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
           <Breadcrumbs {...{ categoryName: "Characters", itemName: name, color: "white" }} />
 
           {/* Character */}
-          <Grid container sx={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}>
-
+          <Grid container p={2} spacing={{ xs: 2, md: 3 }} columns={{ xs: 6, sm: 12 }}>
             {/* Character Image */}
-            <Grid item xs={12} sm={6} p={2}>
+            <Grid item xs={12} sm={6}>
               <CardMedia
                 component="img"
                 src={`${thumbnail.path}/portrait_xlarge.${thumbnail.extension}`}
@@ -66,7 +65,7 @@ export default function Characters({ characterData }: CharacterProps) {
               />
             </Grid>
             {/* Character Info */}
-            <Grid item xs={12} sm={6} p={2}>
+            <Grid item xs={12} sm={6}>
               <CharacterName {...{ name, description }} />
 
               <CharacterLastSeen {...{ comics, stories, series }} />
