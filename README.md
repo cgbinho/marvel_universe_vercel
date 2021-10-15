@@ -2,6 +2,26 @@
 
 This is the repository for my personal front-end project, a Marvel Universe catalog using Marvel API.
 
+## Main Technologies / Functionalities:
+
+* Next.js Framework;
+* Axios config using interceptors, to consume Marvel API;
+* Home page listing Marvel Characters using Infinite Scroll;
+* React-query to handle data fetching;
+* Filtering Characters by Name and Ascending and Descending order;
+* Dynamic static page generation using GetStaticProps / GetStaticPaths for each Character;
+* Material UI Framework for stylingthe pages.
+* others.
+
+_Disclaimer: All Character's data provided by Marvel. © 2021 Marvel._
+
+![Screenshot](https://res.cloudinary.com/cgbordin/image/upload/v1634295801/marvel_universe_cgbordin_webxsf.png)
+Characters Home Page
+
+
+![Screenshot](https://res.cloudinary.com/cgbordin/image/upload/v1634295913/marvel_universe__character_page_cgbordin_zqd3fs.png)
+Character Page
+
 [cgbordin.com](https://www.cgbordin.com)
 
 ## How to use
@@ -42,14 +62,3 @@ npm run build
 yarn build
 ```
 
-## The idea behind the example
-
-The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps.
-It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in MUI v5. If you prefer, you can [use styled-components instead](https://mui.com/guides/interoperability/#styled-components).
-
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/getting-started/templates/) section.
