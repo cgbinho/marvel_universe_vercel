@@ -28,7 +28,7 @@ export default function Index() {
     hasNextPage,
     isLoading,
     isFetching
-  } = useInfiniteQuery([offset, nameStartsWith, orderBy], fetchCharacters, {
+  } = useInfiniteQuery(["characters", { offset, nameStartsWith, orderBy }], fetchCharacters, {
     getNextPageParam: (lastPage, pages) => {
       if (lastPage.lastPage) {
         return undefined;
@@ -38,6 +38,7 @@ export default function Index() {
   });
 
   const backToRef = useRef(null);
+
 
   return (
     <Layout>

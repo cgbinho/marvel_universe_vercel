@@ -1,20 +1,20 @@
 import { CharacterItemData, CharacterResponseData } from '../@types';
 import { api } from '../api';
 
-// type QueryKeyData = {
-//   pageParam?: number;
-//   queryKey: [
-//     offset?: number,
-//     nameStartsWith?: string,
-//     orderBy?: string,
-//   ]
-// }
+type QueryKeyData = {
+  pageParam?: number;
+  queryKey: [
+    offset: number,
+    nameStartsWith: string,
+    orderBy: string,
+  ]
+}
 
-type QueryKeyData = [
-  offset: number,
-  nameStartsWith: string,
-  orderBy: string,
-]
+// type QueryKeyData = [
+//   offset: number,
+//   nameStartsWith: string,
+//   orderBy: string,
+// ]
 
 
 type CharactersQueryResponseData = {
@@ -27,18 +27,26 @@ type CharactersQueryResponseData = {
   lastPage: boolean;
 }
 
+type queryParamsData = {
+  pageParam: number;
+  queryKey: queryKeyData
+}
 
+type queryKeyData = [string, {
+  offset: number,
+  nameStartsWith: string,
+  orderBy: string,
+}]
 
-export async function fetchCharacters(queryKey: any): Promise<CharactersQueryResponseData> {
-
+export async function fetchCharacters(queryData: any) {
 
   // queryKey type inferred here to avoid react-query type error:
-  const [offset, nameStartsWith, orderBy] = queryKey as QueryKeyData;
+  const { pageParam = 0, queryKey } = queryData;
+  const [, { offset, nameStartsWith, orderBy }] = queryKey;
 
-  console.log({ offset, nameStartsWith, orderBy });
 
   const params = Object.assign(
-    { offset },
+    { offset: pageParam },
     nameStartsWith && { nameStartsWith },
     orderBy && { orderBy }
   );
