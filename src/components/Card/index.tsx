@@ -1,6 +1,6 @@
-import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import React from 'react';
+import { CardActionArea, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
+import React from 'react';
 import { CharacterItemData } from '../../@types';
 
 interface CharacterProps {

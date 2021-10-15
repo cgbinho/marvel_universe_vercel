@@ -1,8 +1,6 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
-import { Divider } from '@mui/material';
-import { MarvelLogo } from '../MarvelLogo';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
 
 export function Hero() {
   return (

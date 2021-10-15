@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { CharactersIcon } from '../Icons/Characters';
 
 interface BreadcrumbsData {

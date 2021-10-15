@@ -1,7 +1,7 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
+import { Box } from '@mui/material';
 import MuiLink from '@mui/material/Link';
-import { Grid, Box } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
 import { Contact } from '../Contact';
 
 export function Footer() {

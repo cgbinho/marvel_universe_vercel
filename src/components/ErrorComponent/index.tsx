@@ -1,8 +1,7 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import { Typography } from '@mui/material';
-import { Icon } from '@mui/material';
+import Box from '@mui/material/Box';
+import * as React from 'react';
 
 interface ErrorMessageData {
   message: string;

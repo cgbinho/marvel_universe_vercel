@@ -1,6 +1,5 @@
-import { List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import * as React from 'react';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 type LastSeenItemData = {
   name: string;

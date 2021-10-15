@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { CharacterItemData } from '../../@types';
+import { CharacterResponseData, ResponsePageData } from '../../@types';
 import { api } from '../../api';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { CharacterLastSeen } from '../../components/Character/LastSeen';
@@ -14,13 +14,7 @@ import { Layout } from '../../components/Layout';
 
 
 interface CharacterProps {
-  characterData: {
-    count: number;
-    limit: number;
-    offset: number;
-    results: CharacterItemData[];
-    total: number;
-  }
+  characterData: ResponsePageData
 }
 
 export default function Characters({ characterData }: CharacterProps) {
@@ -86,7 +80,7 @@ export default function Characters({ characterData }: CharacterProps) {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 
-  const { id } = params;
+  const id = params?.id;
 
   // load character data
   try {
@@ -105,7 +99,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       return config;
     });
 
-    const response = await api.get(`/characters/${id}`);
+    const response = await api.get<CharacterResponseData>(`/characters/${id}`);
+
     const characterData = response.data.data;
 
     return {

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Button, ButtonGroup, Grid, Typography } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Button, ButtonGroup, Grid, Typography } from '@mui/material';
+import React from 'react';
 
 interface FilterbyNameOrder {
   setOrderBy: React.Dispatch<React.SetStateAction<string>>;

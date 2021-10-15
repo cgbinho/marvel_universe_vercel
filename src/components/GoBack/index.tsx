@@ -1,7 +1,7 @@
-import * as React from 'react';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { Button, Grid } from '@mui/material';
 import { useRouter } from 'next/router';
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import * as React from 'react';
 
 export function GoBack() {
 
