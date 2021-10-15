@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// Used in client side requests (uses Marvel public key only)
+// For client-side requests, we use ts,apikey and hash.
 export const api = axios.create({ baseURL: process.env.NEXT_PUBLIC_MARVEL_API_URL });
 
 api.interceptors.request.use(config => {
@@ -11,23 +13,3 @@ api.interceptors.request.use(config => {
   };
   return config;
 });
-
-// api.interceptors.request.use(config => {
-//   const ts = new Date().getTime();
-//   const apikey = process.env.NEXT_PUBLIC_MARVEL_KEY;
-//   console.log(ts);
-//   console.log(apikey);
-//   const message = ts + `${process.env.MARVEL_PRIVATE_KEY}` + apikey;
-//   console.log(message);
-//   const hash = CryptoJs.MD5(message);
-//   console.log(hash);
-
-//   config.params = {
-//     ts,
-//     apikey,
-//     hash,
-//     ...config.params,
-//   };
-//   return config;
-// });
-

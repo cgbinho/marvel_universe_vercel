@@ -31,3 +31,15 @@ export interface CharacterItemData {
     url: string;
   }[];
 }
+
+export type ResponsePageData = {
+  count: number;
+  limit: number;
+  offset: number;
+  results: CharacterItemData[];
+  total: number;
+}
+
+export interface CharacterResponseData {
+  data: ResponsePageData
+}
