@@ -12,15 +12,15 @@ export function FilterByNameStartsWith({ setNameStartsWith, setOffset }: Filterb
 
   return (
     <>
-      <Grid mx={5} my={1} sx={{ display: 'flex', justifyContent: 'center' }}>
+      {/* <Grid mx={5} my={1} sx={{ display: 'flex', justifyContent: 'center' }}>
         <Typography
           variant="body1"
           fontWeight="400"
           color="grey.600"
         >
-          Filter by Name
+          Filter by 
         </Typography>
-      </Grid>
+      </Grid> */}
       <Grid
         mx={1}
         mb={2}

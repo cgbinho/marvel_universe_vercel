@@ -11,7 +11,7 @@ export function FilterByOrder({ setOrderBy }: FilterbyNameOrder) {
 
   return (
     <>
-      <Grid mx={5} my={1} sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Grid mx={5} my={1} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Typography
           variant="body1"
           fontWeight="400"
@@ -25,7 +25,7 @@ export function FilterByOrder({ setOrderBy }: FilterbyNameOrder) {
         maxWidth={1200}
         sx={{
           display: 'flex',
-          justifyContent: 'center'
+          justifyContent: 'flex-end'
         }}
       >
         <ButtonGroup
