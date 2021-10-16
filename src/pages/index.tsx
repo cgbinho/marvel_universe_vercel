@@ -53,7 +53,6 @@ export default function Index() {
         flexDirection: 'column',
         alignContent: "center",
         backgroundColor: 'grey.900',
-        flexWrap: 'nowrap'
       }}
       >
 
