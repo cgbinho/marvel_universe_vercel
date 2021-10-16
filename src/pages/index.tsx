@@ -52,7 +52,8 @@ export default function Index() {
         display: 'flex',
         flexDirection: 'column',
         alignContent: "center",
-        backgroundColor: 'grey.900'
+        backgroundColor: 'grey.900',
+        flexWrap: 'nowrap'
       }}
       >
 

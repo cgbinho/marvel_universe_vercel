@@ -8,7 +8,7 @@ interface FilterbyNameStartsWithData {
 
 export function FilterByNameStartsWith({ setNameStartsWith, setOffset }: FilterbyNameStartsWithData) {
 
-  const nameStartFilters: string[] = Array.from('ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789');
+  const nameStartFilters: string[] = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
 
   return (
     <>
@@ -48,6 +48,7 @@ export function FilterByNameStartsWith({ setNameStartsWith, setOffset }: Filterb
             <Button key={nameInitial}
               onClick={async () => {
                 setOffset(0);
+                console.log(nameInitial);
                 setNameStartsWith(nameInitial);
               }}
               variant="text">{nameInitial}

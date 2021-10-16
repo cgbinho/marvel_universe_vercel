@@ -44,10 +44,10 @@ export async function fetchCharacters(queryData: any) {
   const { pageParam = 0, queryKey } = queryData;
   const [, { offset, nameStartsWith, orderBy }] = queryKey;
 
-
+  // nameStartsWith zero '0' string does not return a valid response from the API, so we ignore it.
   const params = Object.assign(
     { offset: pageParam },
-    nameStartsWith && { nameStartsWith },
+    nameStartsWith && nameStartsWith !== '0' && { nameStartsWith },
     orderBy && { orderBy }
   );
 
