@@ -11,6 +11,7 @@ import { CharacterLastSeen } from '../../components/Character/LastSeen';
 import { CharacterName } from '../../components/Character/Name';
 import { GoBack } from '../../components/GoBack';
 import { Layout } from '../../components/Layout';
+import { LoadingComponent } from '../../components/LoadingComponent';
 
 
 interface CharacterProps {
@@ -20,10 +21,10 @@ interface CharacterProps {
 export default function Characters({ characterData }: CharacterProps) {
 
   const { isFallback } = useRouter();
+  // const isFallback = true;
 
   if (isFallback) {
-    return <p>Loading</p>
-
+    return <LoadingComponent />
   }
 
   const { id, name, description, series, stories, comics, thumbnail } = characterData?.results?.[0];
