@@ -2,14 +2,14 @@ import { Typography } from '@mui/material';
 import * as React from 'react';
 
 type LastSeenItemData = {
-  name: string;
-  resourceURI: string;
+  name?: string;
+  resourceURI?: string;
 }
 
 interface LastSeenCategoryData {
   categoryName: string;
-  data: {
-    items: LastSeenItemData[]
+  data?: {
+    items?: LastSeenItemData[]
   }
 }
 
@@ -25,7 +25,7 @@ export const LastSeenCategory = ({ categoryName, data }: LastSeenCategoryData) =
         {categoryName}
       </Typography >
       <ul>
-        {data.items.slice(0, 3).map((item: LastSeenItemData) => {
+        {data?.items?.slice(0, 3).map((item: LastSeenItemData) => {
           return (
             <li key={item.resourceURI}>
               <Typography

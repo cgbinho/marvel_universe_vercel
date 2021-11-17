@@ -43,3 +43,41 @@ export type ResponsePageData = {
 export interface CharacterResponseData {
   data: ResponsePageData
 }
+
+
+export type ComicList = {
+  available?: number;
+  returned?: number;
+  collectionURI?: string;
+  items?: ComicSummary[]
+}
+
+export type SeriesList = {
+  available?: string;
+  returned?: string;
+  collectionURI?: string;
+  items?: SeriesSummary[]
+}
+
+export type StoryList = {
+  available?: number;
+  returned?: number;
+  collectionURI?: string;
+  items?: StorySummary[]
+}
+
+export type ComicSummary = {
+  resourceURI?: string;
+  name?: string;
+}
+
+export type SeriesSummary = {
+  resourceURI?: string;
+  name?: string;
+}
+
+export type StorySummary = {
+  resourceURI?: string;
+  name?: string;
+  type?: string;
+}

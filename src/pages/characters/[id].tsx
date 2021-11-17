@@ -21,7 +21,6 @@ interface CharacterProps {
 export default function Characters({ characterData }: CharacterProps) {
 
   const { isFallback } = useRouter();
-  // const isFallback = true;
 
   if (isFallback) {
     return <LoadingComponent />

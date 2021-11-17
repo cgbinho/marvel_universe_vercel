@@ -1,15 +1,16 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import { LastSeenCategory } from '../../LastSeenCategory';
+import { ComicList, SeriesList, StoryList } from '../../../@types';
 
 interface CharacterLastSeenData {
-  comics: any;
-  series: any;
-  stories: any;
+  comics: ComicList;
+  series: SeriesList;
+  stories: StoryList;
 }
 
-export function CharacterLastSeen({ comics, series, stories }: CharacterLastSeenData) {
 
+export function CharacterLastSeen({ comics, series, stories }: CharacterLastSeenData) {
 
   return (
     <>
