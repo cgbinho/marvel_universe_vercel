@@ -1,19 +1,18 @@
-
 export type CharacterThumbnailData = {
   path: string;
   extension: string;
-}
+};
 
 export type LastSeenData = {
-  available: number;
+  available: string;
   collectionURI: string;
   items: {
     resourceURI: string;
     name: string;
     type?: string;
   }[];
-  returned: number;
-}
+  returned: string;
+};
 
 export interface CharacterItemData {
   id: number;
@@ -38,46 +37,45 @@ export type ResponsePageData = {
   offset: number;
   results: CharacterItemData[];
   total: number;
-}
+};
 
 export interface CharacterResponseData {
-  data: ResponsePageData
+  data: ResponsePageData;
 }
-
 
 export type ComicList = {
-  available?: number;
-  returned?: number;
+  available?: string;
+  returned?: string;
   collectionURI?: string;
-  items?: ComicSummary[]
-}
+  items?: ComicSummary[];
+};
 
 export type SeriesList = {
   available?: string;
   returned?: string;
   collectionURI?: string;
-  items?: SeriesSummary[]
-}
+  items?: SeriesSummary[];
+};
 
 export type StoryList = {
-  available?: number;
-  returned?: number;
+  available?: string;
+  returned?: string;
   collectionURI?: string;
-  items?: StorySummary[]
-}
+  items?: StorySummary[];
+};
 
 export type ComicSummary = {
   resourceURI?: string;
   name?: string;
-}
+};
 
 export type SeriesSummary = {
   resourceURI?: string;
   name?: string;
-}
+};
 
 export type StorySummary = {
   resourceURI?: string;
   name?: string;
   type?: string;
-}
+};
